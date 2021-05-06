@@ -1,5 +1,5 @@
 #include<iostream>
-#include <cstddef>
+#include <queue>
 #include <stdlib.h>
 using namespace std;
 
@@ -98,12 +98,26 @@ class BST{
                 }
             }
         }
+        void level_order(Node *root){
+            queue<Node *> q;
+            q.push(root);
+            while(q.size()!=0){
+                Node *curr=q.front();
+                cout<<curr->data<<" ";
+                if(curr->left!=NULL){
+                    q.push(curr->left);
+                }
+                if(curr->right!=NULL){
+                    q.push(curr->right);
+                }
+                q.pop();
+            }
+        }
 };
 
 int main(){
     BST t;
-    Node *root;
-    cout<<"hello";
+    Node *root=NULL;
     root = t.insert(root, 15);
     root = t.insert(root, 10);
     root = t.insert(root, 20);
@@ -111,16 +125,17 @@ int main(){
     root = t.insert(root, 8);
     root = t.insert(root, 12);
     int number;
+    cout<<"Enter number to search: "<<endl;
     cin >> number;
     if (t.search(root, number)) cout << "Found\n";
     else cout << "Not Found\n";
 
-    cout << t.get_min(root) << endl;
-    cout << t.get_max(root) << endl;
+    cout << "Min = "<<t.get_min(root) << endl;
+    cout << "Max = "<<t.get_max(root) << endl;
 
-    //cout << "Level order: ";
-    //LevelOrder(root);
-    //cout << endl;
+    cout << "Level order: ";
+    t.level_order(root);
+    cout << endl;
 
     cout << "PreOrder: ";
     t.preorder(root);
@@ -135,3 +150,4 @@ int main(){
     cout << endl;
     return 0;
 }
+
