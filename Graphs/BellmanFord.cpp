@@ -17,13 +17,11 @@ void print(map<int , vector< pair<int, int > > > adjList){
 
 map<int,int> bellmen_ford(map<int,vector<pair<int,int> > > graph,int x,int n,vector<int> vertices){
     map<int,int> d;
-    vector<int> q;
     int b,w;
     for(int i=1;i<n+1;i++){
         d[vertices[i-1]]=10000;
     }
     d[x]=0;
-    q.push_back(x);
     for(map<int , vector< pair<int, int > > >::iterator it = graph.begin() ; it != graph.end() ; it++){
         int id=it->first;
         vector<pair<int, int> > neighbours = it->second;
@@ -31,7 +29,6 @@ map<int,int> bellmen_ford(map<int,vector<pair<int,int> > > graph,int x,int n,vec
             b=neighbours[i].first;
             w=neighbours[i].second;
             d[b]=min(d[id]+w,d[b]);
-            q.push_back(id);
         }
     }
     return d;
