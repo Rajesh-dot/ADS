@@ -1,2 +1,2 @@
-# Data_Structures_2CSEB
-Data Structures and Algorithms Practice
+# Advanced_Data_Structures_2CSEB
+Lab Programms for ADS.
