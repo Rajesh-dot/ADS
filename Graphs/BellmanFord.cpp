@@ -25,12 +25,13 @@ map<int,int> bellmen_ford(map<int,vector<pair<int,int> > > graph,int x,int n,vec
     d[x]=0;
     q.push_back(x);
     for(map<int , vector< pair<int, int > > >::iterator it = graph.begin() ; it != graph.end() ; it++){
+        int id=it->first;
         vector<pair<int, int> > neighbours = it->second;
         for(int i = 0 ; i < neighbours.size() ; i++){
             b=neighbours[i].first;
             w=neighbours[i].second;
-            d[b]=min(d[i]+w,d[b]);
-            q.push_back(i);
+            d[b]=min(d[id]+w,d[b]);
+            q.push_back(id);
         }
     }
     return d;
